@@ -1,53 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Code Quiz</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-</head>
-<body>
-
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
     <div class="container">
+      <div id="start-quiz">
+        <h1>Coding Quiz</h1>
+        <p>
+          This timed quiz will test your knowledge on Javascript fundamentals.
+          You will have one minute to answer all 5 questions,
+          <br />
+          but for every wrong answer you get the timer will subtract 10 seconds.
+          Click "Start Quiz" whenever you are ready.
+        </p>
+        <button id="start-button">Start Quiz</button>
+      </div>
 
-        <div id="start-quiz">
-
-<h1>Coding Quiz</h1>
-<p>This timed quiz will test your knowledge on Javascript fundamentals. You will have one minute to answer all 5 questions, 
-    <br>
-    but for every wrong answer you get the timer will subtract 5 seconds. Click "Start Quiz" whenever you are ready.</p>
-<button id="start-button">Start Quiz</button>
-</div>
-
-<div id="quiz">
-    <div id="timer">Time left: </div>
-        <div id="questions"><p>Questions Placeholder</p></div>
-           
-        <div id="result"></div>
-    </div>
-    <div id="endQuiz">
-
-        <div id="finalScore"></div>
-        <input type="text" placeholder="Enter you initials" name="initials" id="initials"/>
-        <button id="submitScore">Submit Score</button>
-    </div>
-   
-        <div id="highScore">
-            <h3>User Initials</h3>
-            <h3>Score</h3>
+      <div id="quiz">
+        <div id="timer">Time left:</div>
+        <h1 id="questions"></h1>
+        <div id="answers">
+          <button id="answerChoice1">a)</button>
+          <button id="answerChoice2">b)</button>
+          <button id="answerChoice3">c)</button>
+          <button id="answerChoice4">d)</button>
         </div>
-       
-    
-    <div id="endQuizBtns">
-        <button id="playAgain" onclick="quizAgain()">Play Again</button>
-        <button id="clearHighScore" onclick="clearScore()">Clear Highscores</button>
-    </div>
-</div>
-</div>
-</div>
+      </div>
+      <div id="result">
+        <div id="finalScore"></div>
+        <input
+          type="text"
+          placeholder="Enter you initials"
+          name="initials"
+          id="initials"
+        />
+        <button id="submitScore">Submit Score</button>
+      </div>
 
+      
+
+      <div id="endQuizBtns">
+        <h1>High Scores</h1>
+        <div id = displayNameInput></div>
+        <div id = displayHighScoreInput></div>
+        <button id="playAgain">Play Again</button>
+        <button id="clearHighScore">Clear Highscores</button>
+      </div>
+    </div>
 
     <script src="./script.js"></script>
-    
-</body>
+  </body>
 </html>

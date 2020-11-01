@@ -12,19 +12,18 @@ var answerChoice3 = document.getElementById("answerChoice3");
 var answerChoice4 = document.getElementById("answerChoice4");
 var result = document.getElementById("result");
 var finalScore = document.getElementById("finalScore");
+var displayNameInput = document.getElementById("displayNameInput");
+var displayHighScoreInput = document.getElementById("displayHighScoreInput");
 var submitScoreBtn = document.querySelector("#submitScore");
-var highScore = document.getElementById("highScore");
 var endQuizBtns = document.querySelector("#endQuizBtns");
 var playAgainBtn = document.getElementById("playAgain");
 var clearHighScoreBtn = document.getElementById("clearHighScore");
 
 var questionIndex = 0;
-var score = 0;
+var score;
 var correct;
 var timeLeft = 60;
 var timerInterval;
-var response = [];
-
 
 
 
@@ -85,8 +84,6 @@ var myQuestions = [
 
 ];
 
-
-
 // Display Questions
 function renderQuestion() {
     
@@ -145,9 +142,53 @@ function beginQuiz() {
 
         if (timeLeft === 0 || questionIndex >= myQuestions.length) {
             
+            
            showScore()
         }
     }, 1000);
 
 }
+
+// Display Final Score
+function showScore() {
+   
+    if (questionIndex > myQuestions.length +2) {
+        clearInterval(timerInterval);
+        quizContainer.style.display = "none";
+        result.style.display = "block";
+        finalScore.innerHTML = ("Your score is " + score);
+    }
+}
+
+
+function highScore () {
+    result.style.display = "none";
+    endQuizBtns.style.display = "block";
+    event.stopPropagation();
+    localStorage.setItem("initials", initials);
+    localStorage.setItem("score", score);
+   
+}
+
+// Clear data when clearScore button is pressed
+function clearScore() {
+    window.localStorage.clear();
+}
+
+
+// Restart quiz and timer when playAgain button is pressed
+function tryQuizagain() {
+    location.reload();
+
+}
+
+
+// Event Listeners
+
+startButton.addEventListener("click", beginQuiz);
+clearHighScoreBtn.addEventListener("click", clearScore);
+playAgainBtn.addEventListener("click", tryQuizagain);
+submitScoreBtn.addEventListener("click", highScore);
+playAgainBtn.addEventListener("click", tryQuizagain);
+clearHighScoreBtn.addEventListener("click", clearScore);
 

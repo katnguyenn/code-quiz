@@ -1,0 +1,62 @@
+#result {
+   display: none;
+}
+
+#endQuizBtns {
+    display: none;
+}
+
+#quiz {
+    display: none;
+    text-align: center;
+   
+}
+
+#start-quiz {
+    text-align: center;
+    padding-top: 200px;
+    
+}
+
+h1 {
+    display: block;
+    text-align: center;
+    
+}
+
+p {
+    text-align: center;
+}
+
+button {
+    background-color: brown;
+    border: none;
+    font-size: 14px;
+    padding: 10px; 
+    
+}
+
+#questions {
+    padding-top: 200px;
+}
+
+#result {
+    padding-top: 200px;
+    text-align: center;
+}
+
+#endQuizBtns {
+    padding-top: 200px;
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    button {
+        margin-top: 10px;
+    }
+
+    p {
+        margin-right: 20px;
+        margin-left: 20px;
+    }
+}
