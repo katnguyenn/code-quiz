@@ -1,23 +1,32 @@
 // Variables
 var container = document.getElementById("container");
 var startQuiz = document.getElementById("start-quiz");
-var startButton = document.getElementById("start-button");
+var startButton = document.querySelector("#start-button");
 var quizContainer = document.getElementById("quiz");
 var timer = document.getElementById("timer");
 var quizQuestions = document.getElementById("questions");
+var answers = document.getElementById("answers");
+var answerChoice1 = document.getElementById("answerChoice1");
+var answerChoice2 = document.getElementById("answerChoice2");
+var answerChoice3 = document.getElementById("answerChoice3");
+var answerChoice4 = document.getElementById("answerChoice4");
 var result = document.getElementById("result");
-var endQuiz = document.getElementById("endQuiz");
 var finalScore = document.getElementById("finalScore");
-var submitScore = document.getElementById("submitScore");
+var submitScoreBtn = document.querySelector("#submitScore");
 var highScore = document.getElementById("highScore");
-var endQuizBtns = document.getElementById("endQuizBtns");
-var playAgain = document.getElementById("playAgain");
-var clearHighScore = document.getElementById("clearHighScore");
+var endQuizBtns = document.querySelector("#endQuizBtns");
+var playAgainBtn = document.getElementById("playAgain");
+var clearHighScoreBtn = document.getElementById("clearHighScore");
 
-var questionNumber = -1;
-var score = 0; 
+var questionIndex = 0;
+var score = 0;
 var correct;
 var timeLeft = 60;
+var timerInterval;
+var response = [];
+
+
+
 
 // Quiz Questions
 var myQuestions = [
@@ -37,7 +46,8 @@ var myQuestions = [
         Choices: {
             a: "//This is a comment",
             b: "<!--This is a comment-->",
-            c: "'This is a comment"
+            c: "'This is a comment",
+            d: "None"
         },
         correctAnswer: "b"
     },
@@ -45,7 +55,9 @@ var myQuestions = [
         Question: "Javascript is the same as Java.",
         Choices: {
             a: "True",
-            b: "False"
+            b: "False",
+            c: "None",
+            d: "Both"
         },
         correctAnswer: "b"
     },
@@ -64,10 +76,78 @@ var myQuestions = [
         Choices: {
             a: "call myFunction()",
             b: "myFunction()",
-            c: "call function myFunction()"
+            c: "call function myFunction()",
+            d: "I don't know"
         },
         correctAnswer: "b"
     }
+
+
 ];
 
+
+
+// Display Questions
+function renderQuestion() {
+    
+    if (questionIndex >= myQuestions.length) {
+        return showScore();
+    } else {
+        console.log(myQuestions[questionIndex]);
+        quizQuestions.textContent = myQuestions[questionIndex].Question
+        answerChoice1.textContent = myQuestions[questionIndex].Choices.a
+        answerChoice2.textContent = myQuestions[questionIndex].Choices.b
+        answerChoice3.textContent = myQuestions[questionIndex].Choices.c
+        answerChoice4.textContent = myQuestions[questionIndex].Choices.d
+    }
+
+    answerChoice1.addEventListener("click", function () {
+        questionIndex++
+        if (questionIndex <= myQuestions.length){
+            renderQuestion();
+        }   
+         
+    })
+
+    answerChoice2.addEventListener("click", function () {
+        questionIndex++
+        if (questionIndex <= myQuestions.length){ 
+            renderQuestion();
+       
+        }   
+            
+    })
+    answerChoice3.addEventListener("click", function () {
+        questionIndex++
+        if (questionIndex <= myQuestions.length){
+            renderQuestion();
+        } 
+            
+    })
+    answerChoice4.addEventListener("click", function () {
+        questionIndex++
+        if (questionIndex <= myQuestions.length){
+            renderQuestion();
+        }  
+         
+    })
+}
+
+
+// Timer Starts
+function beginQuiz() {
+    startQuiz.style.display = "none";
+    quizContainer.style.display = "block";
+    renderQuestion();
+     timerInterval = setInterval(function () {
+        timeLeft--;
+        timer.textContent = "Time: " + timeLeft;
+
+        if (timeLeft === 0 || questionIndex >= myQuestions.length) {
+            
+           showScore()
+        }
+    }, 1000);
+
+}
 
